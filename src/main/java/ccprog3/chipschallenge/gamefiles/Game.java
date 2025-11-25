@@ -14,7 +14,7 @@ public class Game{
     private Chip chip;
     private Map map;
     private boolean completed;
-    private static int level;
+    private int level;
     private boolean isRunning;
      /**
      * Constructs a new Game instance.
@@ -22,17 +22,25 @@ public class Game{
      * @param map  The {@link Map} object representing the level.
      * @param chip The {@link Chip} object representing the player.
      */
-    public Game(Map map, Chip chip){
+    public Game(Map map, Chip chip, int level){
         this.map = map;
         this.chip = chip;
         this.completed = false;
         this.isRunning = true;
-        Game.level = 1;
+        this.level = level;
     }
 
      public void clearScreen() {
          System.out.print("\033[H\033[2J");
          System.out.flush();
+     }
+
+     private void nextLevel(){
+        level++;
+     }
+
+     public int getLevel(){
+        return level;
      }
 
      /**
@@ -75,7 +83,7 @@ public class Game{
      */
     public boolean checkIfComplete(){
         if(this.chip.hasAllChips(this.map.getChipsNeeded()) && this.chip.isAtExit()){
-            this.completed = true;
+            nextLevel();
             return true;
         }
         return false;
@@ -134,16 +142,4 @@ public class Game{
         }
     }
 
-
-    public static void main(String[] args) {
-        try {
-            Map map = new Map("level1.txt");
-            Chip chip = new Chip(map.getStartX(), map.getStartY());
-            Game game = new Game(map, chip);
-            game.gameLoop();
-
-        } catch (IOException e) {
-            System.out.println("Level Not Found.");
-        }
-    }
 }

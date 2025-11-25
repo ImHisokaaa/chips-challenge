@@ -8,14 +8,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-
-import java.lang.classfile.Label;
+import javafx.scene.control.Label;
 
 public class GameController {
 
     @FXML private Canvas gameCanvas;
     @FXML private Label microchips;
-    @FXML private Label keys;
+    @FXML private Label blueKeys;
+    @FXML private Label redKeys;
+    @FXML private Label level;
 
     private GraphicsContext gc;
     private Game game;
@@ -30,7 +31,7 @@ public class GameController {
         try {
             map = new Map("level1.txt");
             chip = new Chip(map.getStartX(), map.getStartY());
-            game = new Game(map, chip);
+            game = new Game(map, chip, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,24 +43,48 @@ public class GameController {
             @Override
             public void handle(long now) {
                 loadResources();
+
                 if (now - lastEnemyMove > 1_000_000_000L){
                     enemyMovement();
                     lastEnemyMove = now;
                 }
 
+                checkEnemyCollision();
+
                 if (game.checkIfComplete()){
-                    stop();
                     System.out.println("Level Complete!");
+                    loadLevel(game.getLevel());
                     return;
                 }
 
                 if (!chip.isAlive()){
                     stop();
                     gameCanvas.getScene().setOnKeyPressed(null); // stops user input
+                    return;
                 }
             }
         };
         timer.start();
+    }
+
+    private void checkEnemyCollision() {
+        for (Enemy enemy : map.getEnemies()) {
+            if (enemy.getX() == chip.getX() && enemy.getY() == chip.getY()) {
+                chip.die("Chip Was Killed");
+                return;
+            }
+        }
+    }
+
+    private void updateHUD(){
+        microchips.setText("Chips: " + chip.getInventory().getMicrochips() +
+                " / " + map.getChipsNeeded());
+
+        blueKeys.setText("Blue Keys: " + chip.getInventory().getBlueKeys());
+
+        redKeys.setText("Red Keys: " + chip.getInventory().getRedKeys());
+
+        level.setText("Level: " + game.getLevel());
     }
 
     private void loadResources(){
@@ -74,11 +99,15 @@ public class GameController {
 
             }
 
+        // draw chip
         gc.drawImage(chip.getImage(), chip.getX() * TILE_SIZE, chip.getY() * TILE_SIZE);
 
+        // draw enemy
         for (Enemy e : map.getEnemies()) {
             gc.drawImage(e.getImage(), e.getX() * TILE_SIZE, e.getY() * TILE_SIZE);
         }
+
+        updateHUD();
     }
 
     public void onKeyPress(KeyEvent event) {
@@ -95,6 +124,17 @@ public class GameController {
             for (Enemy enemy : map.getEnemies()) {
                 enemy.move(map, chip);
             }
+    }
+
+    public void loadLevel(int level) {
+        try {
+            map = new Map("level" + level + ".txt");   // loads next level
+            chip = new Chip(map.getStartX(), map.getStartY());
+            game = new Game(map, chip, level);
+
+        } catch (Exception e) {
+            System.out.println("No more levels. Game finished!");
+        }
     }
 
     public void setGame(Game game) { this.game = game; }
