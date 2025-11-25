@@ -8,17 +8,18 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="ccprog3.chipschallenge.GameController">
 
+    <top>
+        <HBox spacing="30" style="-fx-padding: 10; -fx-background-color: #333;">
+            <Label fx:id="microchips" style="-fx-text-fill: white;"/>
+            <Label fx:id="blueKeys"  style="-fx-text-fill: white;"/>
+            <Label fx:id="redKeys"  style="-fx-text-fill: white;"/>
+            <Label fx:id="level"  style="-fx-text-fill: white;"/>
+        </HBox>
+    </top>
+
     <!-- CENTER: Game Canvas -->
     <center>
         <Canvas fx:id="gameCanvas" width="640" height="640"/>
     </center>
-
-    <!-- TOP: Status Bar -->
-    <top>
-        <HBox spacing="20" style="-fx-padding: 10;">
-            <Label fx:id="Chips" text="Chips: 0"/>
-            <Label fx:id="Keys"  text="Keys: 0"/>
-        </HBox>
-    </top>
 
 </BorderPane>
