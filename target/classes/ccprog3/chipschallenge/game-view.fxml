@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ccprog3.chipschallenge.GameController">
+
+    <!-- CENTER: Game Canvas -->
+    <center>
+        <Canvas fx:id="gameCanvas" width="640" height="640"/>
+    </center>
+
+    <!-- TOP: Status Bar -->
+    <top>
+        <HBox spacing="20" style="-fx-padding: 10;">
+            <Label fx:id="Chips" text="Chips: 0"/>
+            <Label fx:id="Keys"  text="Keys: 0"/>
+        </HBox>
+    </top>
+
+</BorderPane>
