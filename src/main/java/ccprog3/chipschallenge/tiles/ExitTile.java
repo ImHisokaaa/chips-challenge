@@ -52,6 +52,11 @@ public class ExitTile extends Tile {
             System.out.println("Insufficient Microchips.");
     }
 
+    /**
+     * Retrieves the visual image for this tile.
+     *
+     * @return The Image object.
+     */
     @Override
     public Image getImage() {
         return image;

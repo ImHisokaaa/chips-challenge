@@ -6,6 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Controls the main menu interactions.
+ * Handles navigation to the game, help screen, or exiting the application.
+ */
 public class MenuController {
 
     @FXML private Button btnStart;
@@ -13,6 +17,10 @@ public class MenuController {
     @FXML private Button btnExit;
 
 
+    /**
+     * Sets up the initial state of the menu.
+     * Assigns click event handlers to the Start, Help, and Exit buttons.
+     */
     @FXML
     public void initialize() {
 
@@ -25,6 +33,10 @@ public class MenuController {
         });
     }
 
+    /**
+     * Transitions the window to the main game scene.
+     * Loads the game view and sets up keyboard input handling.
+     */
     private void switchToGame() {
         try {
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("game-view.fxml"));
@@ -42,6 +54,10 @@ public class MenuController {
         }
     }
 
+    /**
+     * Transitions the window to the help screen.
+     * Loads the help view FXML.
+     */
     private void switchToHelp() {
         try {
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("help-view.fxml"));

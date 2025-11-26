@@ -56,6 +56,11 @@ public class RedDoor extends DoorTile {
         }
     }
 
+    /**
+     * Retrieves the visual image for this tile.
+     *
+     * @return The Image object.
+     */
     @Override
     public Image getImage() {
         return image;

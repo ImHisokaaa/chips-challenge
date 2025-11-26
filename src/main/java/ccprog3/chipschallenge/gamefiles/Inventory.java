@@ -57,8 +57,18 @@ public class Inventory{
      */
     public int getBlueKeys(){return this.blueKeys;}
 
+    /**
+     * Checks if the inventory contains ice boots (skates).
+     *
+     * @return true if Chip has ice boots, false otherwise.
+     */
     public boolean hasIceBoots() {return hasIceBoots;}
 
+    /**
+     * Checks if the inventory contains acid boots (suction shoes).
+     *
+     * @return true if Chip has acid boots, false otherwise.
+     */
     public boolean hasAcidBoots() {return hasAcidBoots;}
 
     /**
@@ -126,8 +136,14 @@ public class Inventory{
         this.hasFlippers = true;
     }
 
+    /**
+     * Equips the player with ice boots (skates).
+     */
     public void addIceShoes(){this.hasIceBoots = true;}
 
+    /**
+     * Equips the player with acid boots (suction shoes).
+     */
     public void addAcidShoes(){this.hasAcidBoots = true;}
 
      /**

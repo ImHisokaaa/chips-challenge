@@ -55,6 +55,11 @@ public class BlueDoor extends DoorTile {
         }
     }
 
+    /**
+     * Retrieves the visual image associated with this object.
+     *
+     * @return The Image object to display.
+     */
     @Override
     public Image getImage() {
         return image;

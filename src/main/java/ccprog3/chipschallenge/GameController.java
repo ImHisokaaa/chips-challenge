@@ -11,6 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Controls the game UI, input handling, and the main game loop.
+ * Connects the visual interface (FXML) with the game logic classes (Game, Map, Chip).
+ */
 public class GameController {
 
     @FXML private Canvas gameCanvas;
@@ -26,6 +30,10 @@ public class GameController {
     private final int TILE_SIZE = 32;
     private long lastEnemyMove = 0;
 
+    /**
+     * Initializes the controller after the FXML file is loaded.
+     * Sets up the graphics context, loads Level 1, and starts the game loop.
+     */
     public void initialize() {
         gc = gameCanvas.getGraphicsContext2D();
 
@@ -38,6 +46,11 @@ public class GameController {
         gameLoop();
     }
 
+    /**
+     * Runs the main game loop using an AnimationTimer.
+     * Handles rendering, throttles enemy movement, checks for collisions,
+     * and monitors game state (level complete or player death).
+     */
     private void gameLoop(){
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -70,6 +83,10 @@ public class GameController {
         timer.start();
     }
 
+    /**
+     * Checks if the player occupies the same tile as any enemy.
+     * Kills the player if a collision is detected.
+     */
     private void checkEnemyCollision() {
         for (Enemy enemy : map.getEnemies()) {
             if (enemy.getX() == chip.getX() && enemy.getY() == chip.getY()) {
@@ -79,6 +96,10 @@ public class GameController {
         }
     }
 
+    /**
+     * Updates the on-screen display (HUD) labels.
+     * Shows current counts for microchips, keys, and the level number.
+     */
     private void updateHUD(){
         microchips.setText("Chips: " + chip.getInventory().getMicrochips() +
                 " / " + map.getChipsNeeded());
@@ -90,6 +111,10 @@ public class GameController {
         level.setText("Level: " + game.getLevel());
     }
 
+    /**
+     * Renders the entire game scene to the canvas.
+     * Draws the background, map tiles, player, and enemies.
+     */
     private void loadResources(){
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
@@ -113,6 +138,12 @@ public class GameController {
         updateHUD();
     }
 
+    /**
+     * Handles keyboard input events.
+     * Translates W, A, S, D keys into movement commands for the game logic.
+     *
+     * @param event The key event captured from the scene.
+     */
     public void onKeyPress(KeyEvent event) {
         switch (event.getCode()) {
             case W -> game.charMove('W');
@@ -123,12 +154,21 @@ public class GameController {
         loadResources();
     }
 
+    /**
+     * Iterates through all enemies and triggers their movement logic.
+     */
     private void enemyMovement(){
             for (Enemy enemy : map.getEnemies()) {
                 enemy.move(map, chip);
             }
     }
 
+    /**
+     * Loads a specific level from file and resets game objects.
+     * Dynamically resizes the window to fit the new map dimensions.
+     *
+     * @param level The level number to load.
+     */
     public void loadLevel(int level) {
         try {
             String path = "/ccprog3/chipschallenge/levels/level" + level + ".txt";

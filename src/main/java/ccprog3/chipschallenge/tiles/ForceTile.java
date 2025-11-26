@@ -112,6 +112,12 @@ public class ForceTile extends Tile{
         };
     }
 
+    /**
+     * Retrieves the visual sprite for this tile based on its direction.
+     * Maps the direction characters ('W', 'A', 'S', 'D') to the corresponding arrow images.
+     *
+     * @return The Image object representing the directional force floor.
+     */
     @Override
     public Image getImage() {
         return switch (direction){

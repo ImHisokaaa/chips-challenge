@@ -40,6 +40,12 @@ public abstract class Tile{ // this class will be inherited by other tile classe
         this.item = item;
     }
 
+    /**
+     * Retrieves the visual image representing this object.
+     * Subclasses must implement this to provide their specific sprite.
+     *
+     * @return The Image object to display.
+     */
     public abstract Image getImage();
 
     /**

@@ -1,8 +1,8 @@
 package ccprog3.chipschallenge.tiles;
 
 import ccprog3.chipschallenge.gamefiles.Chip;
-import ccprog3.chipschallenge.gamefiles.Map;
 import ccprog3.chipschallenge.gamefiles.Item;
+import ccprog3.chipschallenge.gamefiles.Map;
 import javafx.scene.image.Image;
 
 /**
@@ -64,6 +64,13 @@ public class BlankTile extends Tile {
         }
     }
 
+    /**
+     * Retrieves the image to be displayed for this tile.
+     * If an item is present on the tile, the item's image is returned.
+     * Otherwise, the tile's base image is returned.
+     *
+     * @return The Image object to render.
+     */
     public Image getImage(){
         return item != null ? item.getImage() : this.image;
     }

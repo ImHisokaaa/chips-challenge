@@ -30,6 +30,12 @@ public class Item{
         return this.symbol;
     }
 
+    /**
+     * Retrieves the image sprite corresponding to this item's symbol.
+     * Handles mapping for keys, boots, and microchips.
+     *
+     * @return The Image object to display.
+     */
     public Image getImage(){
         return switch (this.symbol){
             case 'r' -> new Image(getClass().getResourceAsStream("/ccprog3/chipschallenge/images/redKey.png"));

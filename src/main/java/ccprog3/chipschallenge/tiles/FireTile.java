@@ -44,6 +44,11 @@ public class FireTile extends Tile {
         return 'F';
     }
 
+    /**
+     * Retrieves the visual image for this tile.
+     *
+     * @return The Image object.
+     */
     @Override
     public Image getImage() {
         return image;

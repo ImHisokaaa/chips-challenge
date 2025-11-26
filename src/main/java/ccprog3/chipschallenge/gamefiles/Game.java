@@ -30,15 +30,26 @@ public class Game{
         this.level = level;
     }
 
+    /**
+     * Clears the console screen using ANSI escape codes.
+     */
      public void clearScreen() {
          System.out.print("\033[H\033[2J");
          System.out.flush();
      }
 
+     /**
+     * Advances the game to the next level number.
+     */
      private void nextLevel(){
         level++;
      }
 
+     /**
+     * Gets the current level number.
+     *
+     * @return The integer representing the level.
+     */
      public int getLevel(){
         return level;
      }

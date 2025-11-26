@@ -131,6 +131,11 @@ public class Chip{
         this.atExit = bool;
     }
 
+    /**
+     * Gets the visual sprite for Chip based on the direction he is facing.
+     *
+     * @return An Image object of Chip facing the current direction.
+     */
     public Image getImage() {
         return switch (dir){
             case 'W' -> new Image(getClass().getResourceAsStream("/ccprog3/chipschallenge/images/chipUp.png"));
@@ -141,5 +146,10 @@ public class Chip{
         };
     }
 
+    /**
+     * Gets the direction Chip is currently facing.
+     *
+     * @return A character ('W', 'A', 'S', or 'D') representing direction.
+     */
     public char getDir() {return dir;}
 }

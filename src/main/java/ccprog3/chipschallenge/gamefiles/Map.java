@@ -177,5 +177,10 @@ public class Map{
      */
     public int getStartY(){return this.startY;}
 
+    /**
+     * Gets the list of enemies present on the map.
+     *
+     * @return An ArrayList of Enemy objects.
+     */
     public ArrayList<Enemy> getEnemies(){return this.enemies;}
 }
