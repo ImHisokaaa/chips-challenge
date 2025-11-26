@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="ccprog3.chipschallenge.GameController">
@@ -19,7 +20,7 @@
 
     <!-- CENTER: Game Canvas -->
     <center>
-        <Canvas fx:id="gameCanvas" width="640" height="640"/>
+        <Canvas fx:id="gameCanvas"/>
     </center>
 
 </BorderPane>
