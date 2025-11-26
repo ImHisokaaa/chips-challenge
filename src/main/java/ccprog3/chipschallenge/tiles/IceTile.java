@@ -48,7 +48,10 @@ public class IceTile extends Tile{
         }
     }
     @Override
-    public void interact(Chip chip, Map map) {slideChip(chip, map, chip.getDir());}
+    public void interact(Chip chip, Map map) {
+        if(!chip.getInventory().hasIceBoots())
+            slideChip(chip, map, chip.getDir());
+    }
 
     @Override
     public char getSymbol(){

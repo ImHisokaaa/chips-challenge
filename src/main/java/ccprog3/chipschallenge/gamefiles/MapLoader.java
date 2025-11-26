@@ -26,7 +26,7 @@ public class MapLoader{
     public static Tile createTile(char ch){
 
         return switch (ch) {
-            case 'c', 'r', 'b', 'w', 'f' -> new BlankTile(new Item(ch));
+            case 'c', 'r', 'b', 'w', 'f', 'I', 'z' -> new BlankTile(new Item(ch));
             case '#' -> new WallTile();
             case '~' -> new WaterTile();
             case 'F' -> new FireTile();
@@ -39,6 +39,8 @@ public class MapLoader{
             case 'v' -> new ForceTile('S');
             case '>' -> new ForceTile('D');
             case '8', '2', '4', '6' -> new EnemyMover(ch);
+            case 'i' -> new IceTile();
+            case 'a' -> new AcidTile();
             default -> new BlankTile();
         };
     }

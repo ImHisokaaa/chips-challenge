@@ -10,7 +10,7 @@ public class GameApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("menu-view.fxml"));
-        Scene scene = new Scene(fxml.load(), 640, 640);
+        Scene scene = new Scene(fxml.load());
         stage.setScene(scene);
         stage.setTitle("Chip's Challenge");
         stage.show();

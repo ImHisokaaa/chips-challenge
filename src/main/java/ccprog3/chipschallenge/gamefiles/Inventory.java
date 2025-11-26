@@ -7,7 +7,7 @@ package ccprog3.chipschallenge.gamefiles;
  */
 public class Inventory{
     private int microchips, redKeys, blueKeys;
-    private boolean hasFireBoots, hasFlippers;
+    private boolean hasFireBoots, hasFlippers, hasIceBoots, hasAcidBoots;
 
     /**
      * Constructs a new, empty Inventory.
@@ -57,7 +57,11 @@ public class Inventory{
      */
     public int getBlueKeys(){return this.blueKeys;}
 
-     /**
+    public boolean hasIceBoots() {return hasIceBoots;}
+
+    public boolean hasAcidBoots() {return hasAcidBoots;}
+
+    /**
      * Attempts to use one red key.
      * If one or more red keys are available, decrements the count by one
      * and returns {@code true}.
@@ -121,6 +125,10 @@ public class Inventory{
     public void addFlippers(){
         this.hasFlippers = true;
     }
+
+    public void addIceShoes(){this.hasIceBoots = true;}
+
+    public void addAcidShoes(){this.hasAcidBoots = true;}
 
      /**
      * Prints the current status of the inventory (keys and microchips)

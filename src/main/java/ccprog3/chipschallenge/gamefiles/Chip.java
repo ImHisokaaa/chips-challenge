@@ -60,7 +60,9 @@ public class Chip{
             case 'b': this.inventory.addBlue(); break; // blue key
             case 'c': this.inventory.addMicrochip(); break; // microchip
             case 'w': this.inventory.addFlippers(); break; // flippers
-            case 'f': this.inventory.addFireBoots(); break; // fire boots
+            case 'f': this.inventory.addFireBoots(); break;// fire boots
+            case 'I': this.inventory.addIceShoes(); break;
+            case 'z': this.inventory.addAcidShoes(); break;
         }
     }
 

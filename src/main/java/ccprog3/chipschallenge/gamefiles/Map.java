@@ -46,7 +46,7 @@ public class Map{
     public void fillMap(String level){
         ArrayList<String> rows = new ArrayList<>();
 
-        InputStream is = getClass().getResourceAsStream("/ccprog3/chipschallenge/levels/" + level);
+        InputStream is = Map.class.getResourceAsStream(level);
         if (is == null) {
             throw new RuntimeException("Level file not found: " + level);
         }

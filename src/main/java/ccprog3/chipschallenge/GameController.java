@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class GameController {
 
@@ -29,12 +30,11 @@ public class GameController {
         gc = gameCanvas.getGraphicsContext2D();
 
         try {
-            map = new Map("level1.txt");
-            chip = new Chip(map.getStartX(), map.getStartY());
-            game = new Game(map, chip, 1);
+            loadLevel(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         gameLoop();
     }
 
@@ -52,8 +52,10 @@ public class GameController {
                 checkEnemyCollision();
 
                 if (game.checkIfComplete()){
+                    stop();
                     System.out.println("Level Complete!");
                     loadLevel(game.getLevel());
+                    gameLoop();
                     return;
                 }
 
@@ -62,6 +64,7 @@ public class GameController {
                     gameCanvas.getScene().setOnKeyPressed(null); // stops user input
                     return;
                 }
+
             }
         };
         timer.start();
@@ -128,11 +131,28 @@ public class GameController {
 
     public void loadLevel(int level) {
         try {
-            map = new Map("level" + level + ".txt");   // loads next level
+            String path = "/ccprog3/chipschallenge/levels/level" + level + ".txt";
+            map = new Map(path);   // loads next level
             chip = new Chip(map.getStartX(), map.getStartY());
             game = new Game(map, chip, level);
+            lastEnemyMove = 0;
 
+            gameCanvas.setWidth(map.getWidth() * TILE_SIZE);
+            gameCanvas.setHeight(map.getHeight() * TILE_SIZE);
+
+            if (gameCanvas.getScene() != null) {
+                Stage stage = (Stage) gameCanvas.getScene().getWindow();
+
+                // Calculate total window size
+                double hudHeight = 50; // approximate height of your HBox HUD
+                double width = gameCanvas.getWidth() + 16;  // + window borders
+                double height = gameCanvas.getHeight() + hudHeight + 39; // + borders & title bar
+
+                stage.setWidth(width);
+                stage.setHeight(height);
+            }
         } catch (Exception e) {
+            System.out.println("Cannot find level: " + level);
             System.out.println("No more levels. Game finished!");
         }
     }
